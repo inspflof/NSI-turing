@@ -7,7 +7,5 @@
 3-Classe "Curseur"
 
 Ce qu'il faut:
--Curseur
--Tables de transition
--Machine qui bouge le Curseur
--Machine où il y a la bande 
+Curseur, table de transition, Machine qui bouge le Curseur
+et machine où il y a la bande 
