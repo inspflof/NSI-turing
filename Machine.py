@@ -1,64 +1,66 @@
 import Curseur as c
 
 
-class Machine():
-    def __init__(self,bande, curseur=c.Curseur()):
-        """méthode qui initie la machine"""
-        self.bande=bande
-        self.curseur = curseur
-
+class Machine:
+    def __init__(self, bande, curseur=None):
+        """Initialise la machine et sa bande."""
+        self.bande = list(bande)
+        self.curseur = curseur if curseur is not None else c.Curseur()
 
     def changement_etat(self):
-        """méthode qui effectue les changements en fonction de la table de transition table"""
-        if self.curseur.etat!="Fin":
-            table=self.curseur.renvoyer_table()
-            stock=table[(self.curseur.etat,self.curseur.lettre)]
-            self.bande[self.curseur.indice]=stock[1]
-            self.curseur.indice += self.curseur.deplacements[stock[2]]
-            self.curseur.lettre=self.bande[self.curseur.indice]
-            self.curseur.etat=stock[0]
+        """Effectue une transition de la machine."""
+        if self.curseur.etat == "Fin":
+            return
 
+        table = self.curseur.renvoyer_table()
+        transition = table.get((self.curseur.etat, self.curseur.lettre))
+        if transition is None:
+            raise KeyError(
+                f"Transition introuvable pour l'etat {self.curseur.etat!r} "
+                f"et la lettre {self.curseur.lettre!r}."
+            )
 
+        self.bande[self.curseur.indice] = transition[1]
+        self.curseur.indice += self.curseur.deplacements[transition[2]]
+
+        if self.curseur.indice < 0 or self.curseur.indice >= len(self.bande):
+            self.arrive_bout()
+
+        self.curseur.lettre = self.bande[self.curseur.indice]
+        self.curseur.etat = transition[0]
 
     def update(self):
-        """fonction appelée à chaque étapes de l'exécution de la machine"""
-        if self.curseur.indice == len(self.bande) or self.curseur.indice == 0:
+        """Applique une etape de calcul."""
+        if self.curseur.indice < 0 or self.curseur.indice >= len(self.bande):
             self.arrive_bout()
-        print(self.bande)
         self.changement_etat()
-        
 
-
-
-    
     def arrive_bout(self):
-        """fonction qui ajoute des strings vides au début et à la fin de la bande quand le curseur arrive au bout """
-        self.bande=[""]+self.bande+[""]
+        """Ajoute des cases vides quand le curseur sort de la bande."""
+        self.bande = [""] + self.bande + [""]
         self.curseur.indice += 1
 
+    def executer(self, etat_initial, max_steps=10000):
+        self.curseur = c.Curseur(etat_initial, self.bande[self.curseur.indice], self.curseur.indice)
+        steps = 0
+        while self.curseur.etat != "Fin":
+            if steps >= max_steps:
+                raise RuntimeError(
+                    f"La machine n'a pas termine apres {max_steps} etapes depuis l'etat {etat_initial!r}."
+                )
+            self.update()
+            steps += 1
+        return self.bande
 
     def complement_a_deux(self):
-        self.curseur=c.Curseur("E0",self.bande[self.curseur.indice])
-        while self.curseur.etat!="Fin":
-            self.update()
+        return self.executer("E0")
 
     def multiplier(self):
-        self.curseur=c.Curseur("M0",self.bande[self.curseur.indice])
-        while self.curseur.etat!="Fin":
-            self.update()
+        return self.executer("M0")
 
     def addition(self):
-        self.curseur=c.Curseur("A_start",self.bande[self.curseur.indice])
-        while self.curseur.etat!="Fin":
-            self.update()
+        return self.executer("A_start")
 
 
-z=Machine([1,0,1,"+",0,1,0])
-# e=Machine([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
-# f=Machine([0,1,0,0,1,1,0,1])
-# e.complement_a_deux()
-# print(e.bande)
-# f.multiplier()
-# print(f.bande)
-z.addition()
-print(z.bande)
+if __name__ == "__main__":
+    print(Machine([1, 1, 1]).complement_a_deux())
