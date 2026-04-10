@@ -8,7 +8,7 @@ def complement_a_2():
 def supp(bande):
     for i in range(len(bande)):
         bande[i].delete(0,1)
-        print("Je m'insère")
+        print("Je m'enlève")
     racine.update()
     print("What?")
     
@@ -30,7 +30,7 @@ def demarrer():
     
     bouton_complement = tk.Button(racine, text = "complément à 2", command=complement_a_2())
     bouton_complement.pack(padx=20, pady=20)
-    bouton_supprimer = tk.Button(racine, text = "supprimer", command=supp(bande))
+    bouton_supprimer = tk.Button(racine, text = "supprimer", command=lambda : supp(bande))
     bouton_supprimer.pack(padx=20, pady=20)
     for i in range(longueur):
         bande[i].pack( side = "left", padx=0, pady=0, fill = "x", expand = True)
