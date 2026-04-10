@@ -11,7 +11,8 @@ def ajouter_texte(texte, bande):
     tj = 0
     while len(tj) > 0:
         if bande[tj].get() == "":
-            bande[tj].insert()
+            bande[tj].insert(0,t[0])
+            del(t[0])
 
 
 
