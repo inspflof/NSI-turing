@@ -42,7 +42,7 @@ class Machine():
             self.update()
 
     def multiplier(self):
-
+     pass
 
 e=Machine([0,0,0,0,0,0,1,0])
 e.complement_a_deux()
