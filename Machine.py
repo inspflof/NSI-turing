@@ -22,9 +22,8 @@ class Machine():
 
     def update(self):
         """fonction appelée à chaque étapes de l'exécution de la machine"""
-        if self.curseur.indice == len(self.bande) or self.curseur.indice == 0:
+        if self.curseur.indice >= len(self.bande) or self.curseur.indice == 0:
             self.arrive_bout()
-        print(self.bande)
         self.changement_etat()
         
 
@@ -54,11 +53,11 @@ class Machine():
 
 
 z=Machine([1,0,1,"+",0,1,0])
-# e=Machine([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
-# f=Machine([0,1,0,0,1,1,0,1])
-# e.complement_a_deux()
-# print(e.bande)
-# f.multiplier()
-# print(f.bande)
-z.addition()
-print(z.bande)
+e=Machine([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+f=Machine([0,1,0,0,1,1,0,1])
+e.complement_a_deux()
+print(e.bande,"\n")
+f.multiplier()
+print(f.bande)
+# z.addition()
+# print(z.bande)
