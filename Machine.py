@@ -18,9 +18,10 @@ class Machine():
         self.curseur.lettre=self.bande[self.curseur.indice]
 
 
+
     def update(self):
         """fonction appelée à chaque étapes de l'exécution de la machine"""
-        if self.curseur.indice == len(self.bande) or self.curseur.indice == 0:
+        if self.curseur.indice > len(self.bande) or self.curseur.indice == 0:
             self.arrive_bout()
         self.changement_etat()
         
@@ -40,8 +41,10 @@ class Machine():
         while self.curseur.etat!="Fin":
             self.update()
 
+    def multiplier(self):
+     pass
 
-e=Machine([0,0,0,0,0,0,0,0])
+e=Machine([0,0,0,0,0,0,1,0])
 e.complement_a_deux()
 print(e.bande)
 
