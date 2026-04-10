@@ -1,25 +1,26 @@
 import tkinter as tk
-
+racine = tk.Tk()
+racine.title("Turing")
+racine.geometry("2500x2500")
 def complement_a_2():
     pass
 
 def supp(bande):
     for i in bande:
-        i.text = ""
+        i.delete(0)
+    racine.update()
     
 
 def demarrer():
     nb_cases = 50
-    racine = tk.Tk()
-    racine.title("Turing")
-    racine.geometry("2500x2500")
+    
     label = tk.Label(racine, text="entrez vos chiffres svp :")
     label.pack(padx=20, pady=20)
     bande = []
     textes = []
     for i in range(nb_cases):
         textes.append("8")
-        bande.append(tk.Entry(racine, justify="center", width = 1, fg = "#6709AF", state="readonly"))
+        bande.append(tk.Entry(racine, justify="center", width = 1, fg = "#6709AF"))
         
     longueur = len(bande)
     entree = tk.Entry(racine, width = 20)
@@ -34,5 +35,8 @@ def demarrer():
         bande[i].insert(0,textes[i])
 
 
-    racine.mainloop()
+    
+
 demarrer()
+
+racine.mainloop()
