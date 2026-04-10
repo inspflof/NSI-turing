@@ -27,7 +27,7 @@ def demarrer():
     bouton_supprimer = tk.Button(racine, text = "supprimer", command=supp(bande))
     bouton_supprimer.pack(padx=20, pady=20)
     for i in range(longueur):
-        bande[i].pack( side = "left", padx=0, pady=0, fill = "x")
+        bande[i].pack( side = "left", padx=0, pady=0, fill = "x", expand = True)
 
 
     racine.mainloop()
