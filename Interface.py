@@ -8,7 +8,9 @@ def complement_a_2():
 def supp(bande):
     for i in range(len(bande)):
         bande[i].delete(0,1)
+        print("Je m'insère")
     racine.update()
+    print("What?")
     
 
 def demarrer():
