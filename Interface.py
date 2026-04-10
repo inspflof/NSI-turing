@@ -1,4 +1,7 @@
 import tkinter as tk
+import Curseur.py as curseur
+def complement_a_2():
+    pass 
 
 def demarrer():
     nb_cases = 50
@@ -15,5 +18,8 @@ def demarrer():
     entree.pack(padx=20, pady=20)
     for i in range(longueur):
         bande[i].pack(side="left", padx=0, pady=0, expand=True)
+    bouton_complement = tk.Button(racine, text = "complément à 2", command=complement_a_2())
+    bouton_complement.pack(padx=20, pady=20)
+
     racine.mainloop()
 demarrer()
