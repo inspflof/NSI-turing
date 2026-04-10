@@ -12,6 +12,6 @@ def demarrer():
         bande.append(tk.Entry(racine, text = "", width = 1, fg = "#6709AF"))
     longueur = len(bande)
     for i in range(longueur):
-        bande[i].place(x=2500//longueur * i, y=-1250)
+        bande[i].pack(side="left", padx=0, pady=0, expand=True)
     racine.mainloop()
 demarrer()
