@@ -2,8 +2,21 @@ import tkinter as tk
 racine = tk.Tk()
 racine.title("Turing")
 racine.geometry("2500x2500")
+
+def ajouter_texte(texte, bande):
+    t = []
+    for i in range(len(texte)):
+        t.append(texte[0])
+        del(texte[0])
+    tj = 0
+    while len(tj) > 0:
+        if bande[tj].get() == "":
+            bande[tj].insert()
+
+
+
 def complement_a_2():
-    pass
+    print("Je complémente à 2")
 
 def supp(bande):
     for i in range(len(bande)):
@@ -28,7 +41,7 @@ def demarrer():
     entree = tk.Entry(racine, width = 20)
     entree.pack(padx=20, pady=20)
     
-    bouton_complement = tk.Button(racine, text = "complément à 2", command=complement_a_2())
+    bouton_complement = tk.Button(racine, text = "complément à 2", command=lambda : complement_a_2())
     bouton_complement.pack(padx=20, pady=20)
     bouton_supprimer = tk.Button(racine, text = "supprimer", command=lambda : supp(bande))
     bouton_supprimer.pack(padx=20, pady=20)
