@@ -12,16 +12,16 @@ class Machine():
         """méthode qui effectue les changements en fonction de la table de transition table"""
         table=self.curseur.renvoyer_table()
         stock=table[(self.curseur.etat,self.curseur.lettre)]
-        self.curseur.etat=stock[0]
         self.bande[self.curseur.indice]=stock[1]
         self.curseur.indice += self.curseur.deplacements[stock[2]]
         self.curseur.lettre=self.bande[self.curseur.indice]
+        self.curseur.etat=stock[0]
 
 
 
     def update(self):
         """fonction appelée à chaque étapes de l'exécution de la machine"""
-        if self.curseur.indice > len(self.bande) or self.curseur.indice == 0:
+        if self.curseur.indice == len(self.bande) or self.curseur.indice == 0:
             self.arrive_bout()
         self.changement_etat()
         
@@ -42,9 +42,13 @@ class Machine():
             self.update()
 
     def multiplier(self):
-     pass
+        self.curseur=c.Curseur("M0",self.bande[self.curseur.indice])
+        while self.curseur.etat!="Fin":
+            self.update()
 
-e=Machine([0,0,0,0,0,0,1,0])
+e=Machine([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+f=Machine([0,1,0,0,1,1,0,1])
 e.complement_a_deux()
 print(e.bande)
-
+# f.multiplier()
+# print(f.bande)
