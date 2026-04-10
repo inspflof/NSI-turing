@@ -9,7 +9,8 @@ def demarrer():
     bande = []
     for i in range(69):
         bande.append(tk.Entry(racine, text = "", width = 1, fg = "#6709AF"))
+    longueur = len(bande)
     for i in bande:
-        fesse = i
+        i.place(x=None, y=-1250)
     racine.mainloop()
 demarrer()
