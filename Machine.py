@@ -16,7 +16,7 @@ class Machine():
         self.bande[self.curseur.indice]=stock[1]
         self.curseur.indice += self.curseur.deplacements[stock[2]]
         self.curseur.lettre=self.bande[self.curseur.indice]
-        self.curseur.renvoi_all()
+
 
 
     def update(self):
@@ -40,6 +40,8 @@ class Machine():
         self.curseur=c.Curseur("E0",self.bande[self.curseur.indice])
         while self.curseur.etat!="Fin":
             self.update()
+
+    def multiplier(self):
 
 
 e=Machine([0,0,0,0,0,0,1,0])
