@@ -1,8 +1,8 @@
-import Curseur
+import Curseur as c
 
 
 class Machine():
-    def __init__(self,bande, curseur=Curseur.Curseur()):
+    def __init__(self,bande, curseur=c.Curseur()):
         """méthode qui initie la machine"""
         self.bande=bande
         self.curseur = curseur
@@ -36,7 +36,7 @@ class Machine():
 
 
     def complement_a_deux(self):
-        self.curseur=Curseur.Curseur("E0",self.bande[self.curseur.indice])
+        self.curseur=c.Curseur("E0",self.bande[self.curseur.indice])
         while self.curseur.etat!="Fin":
             self.update
 
