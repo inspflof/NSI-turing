@@ -11,7 +11,7 @@ class Machine():
     def changement_etat(self):
         """méthode qui effectue les changements en fonction de la table de transition table"""
         table=self.curseur.renvoyer_table()
-        stock=table[[self.curseur.etat,self.curseur.lettre]]
+        stock=table[(self.curseur.etat,self.curseur.lettre)]
         self.curseur.etat=stock[0]
         self.bande[self.curseur.indice]=stock[1]
         self.curseur.indice += self.curseur.deplacements[stock[2]]
@@ -38,10 +38,10 @@ class Machine():
     def complement_a_deux(self):
         self.curseur=c.Curseur("E0",self.bande[self.curseur.indice])
         while self.curseur.etat!="Fin":
-            self.update
+            self.update()
 
 
 e=Machine([0,0,0,0,0,0,0,0])
-e.complement_a_deux
+e.complement_a_deux()
 print(e.bande)
 
