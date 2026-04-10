@@ -16,11 +16,12 @@ class Machine():
         self.bande[self.curseur.indice]=stock[1]
         self.curseur.indice += self.curseur.deplacements[stock[2]]
         self.curseur.lettre=self.bande[self.curseur.indice]
+        self.curseur.renvoi_all()
 
 
     def update(self):
         """fonction appelée à chaque étapes de l'exécution de la machine"""
-        if self.curseur.indice == len(self.bande) or self.curseur.indice == 0:
+        if self.curseur.indice > len(self.bande) or self.curseur.indice == 0:
             self.arrive_bout()
         self.changement_etat()
         
@@ -41,7 +42,7 @@ class Machine():
             self.update()
 
 
-e=Machine([0,0,0,0,0,0,0,0])
+e=Machine([0,0,0,0,0,0,1,0])
 e.complement_a_deux()
 print(e.bande)
 
