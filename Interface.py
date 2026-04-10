@@ -8,7 +8,7 @@ def demarrer():
     label.pack(padx=20, pady=20)
     bande = []
     for i in range(69):
-        bande.append(tk.Entry(racine, text = "", width = 1, fg = "#6709AF"))
+        bande.append(tk.Entry(racine, width = 1, fg = "#6709AF"))
     for i in bande:
         fesse = i
     racine.mainloop()
