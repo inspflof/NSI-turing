@@ -6,8 +6,8 @@ def complement_a_2():
     pass
 
 def supp(bande):
-    for i in bande:
-        i.delete(0)
+    for i in range(len(bande)):
+        bande[i].delete(0,1)
     racine.update()
     
 
